@@ -15,13 +15,11 @@ set( SRC_FILES
 	"src/main.c"
 	"src/cpu/cpu.h"
 	"src/cpu/cpu.c"
-	"src/display/display.h"
-	"src/display/display.c"
+	#"src/display/display.h"
+	#"src/display/display.c"
 
 	"src/vector/vector.h"
 	"src/vector/vector.c"
-	"src/stack/stack.h"
-	"src/stack/stack.c"
 )
 
 set(SDL_DIR "${CMAKE_SOURCE_DIR}/external/SDL/cmake")
