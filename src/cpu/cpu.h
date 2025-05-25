@@ -7,7 +7,6 @@
 #include <stdbool.h>
 
 #include "../vector/vector.h"
-#include "../stack/stack.h"
 #include "../display/display.h"
 
 #define PRINT_MEM   0b0001
@@ -18,6 +17,7 @@
 #define PROGRAM_ADDRESS 0x200
 #define MEM_SIZE 4 * 1024
 #define REG_COUNT 8
+#define STACK_DEPTH 32
 
 #define GET_NNN_BITS(value) (value >> 8)
 #define GET_NN_BITS(value) (value >> 4)
@@ -63,7 +63,8 @@ typedef struct {
 // CPU
 typedef struct {
 	uint32_t memory[MEM_SIZE];
-	stack_t stack;
+	uint8_t stack[STACK_DEPTH];
+	int p_st;
 	uint8_t regs[REG_COUNT];
 
 	bool is_running;
@@ -84,6 +85,10 @@ void fetch(cpu_t* cpu);
 void decode(cpu_t* cpu);
 void clearFlags(cpu_t* cpu);
 void updateFlags(cpu_t* cpu);
+
+// Stack methods
+void push(cpu_t* cpu, uint8_t value);
+uint8_t pop(cpu_t* cpu);
 
 // Debug methods
 void printCpuInfo(cpu_t* cpu, uint8_t mode);

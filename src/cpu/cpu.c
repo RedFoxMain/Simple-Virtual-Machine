@@ -14,7 +14,6 @@ vector_t* readFromFile(const char* file_name) {
 		fscanf(fp, "%X", &value);
 		append(program, value);
 	}
-	/*print(*program);*/
 	return program;
 }
 
@@ -23,6 +22,7 @@ void loadProgram(cpu_t* cpu, vector_t* vec) {
 	cpu->program_size = vec->size;
 	for (size_t i = 0; i < vec->size; ++i)
 		cpu->memory[PROGRAM_ADDRESS + i] = vec->data[i];
+	
 }
 
 // Init CPU
@@ -34,8 +34,9 @@ void initCPU(cpu_t* cpu) {
 	// Init memory
 	memset(cpu->memory, 0, MEM_SIZE);
 	memset(cpu->regs, 0, REG_COUNT);
-	initStack(&cpu->stack);
+	memset(cpu->stack, 0, STACK_DEPTH);
 	cpu->pc = PROGRAM_ADDRESS;
+	cpu->p_st = -1;
 
 	// Init instruction bits
 	cpu->instr.op_code = 0;
@@ -60,7 +61,7 @@ void clearFlags(cpu_t* cpu) {
 void fetch(cpu_t* cpu) {
 	cpu->instr.op_code = cpu->memory[cpu->pc++];
 	cpu->instr.nnnn = (cpu->instr.op_code >> 12) & 0x0F;
-	cpu->instr.nnn = cpu->instr.op_code & (0xFFF >> 2);
+	cpu->instr.nnn = cpu->instr.op_code;// &(0xFFF >> 2);
 	cpu->instr.nn = cpu->instr.op_code;
 	cpu->instr.n = cpu->instr.op_code & (0xF >> 1);
 }
@@ -71,8 +72,7 @@ void decode(cpu_t* cpu) {
 	switch (cpu->instr.op_code >> 16) {
 		case HALT:
 			if(cpu->instr.nnnn == 0) cpu->is_running = false; // HALT
-			if(cpu->instr.nnnn == 1) clearFlags(cpu);		  // CLRF
-			if (cpu->instr.nnnn == 2) {}					  // DRW
+			if(cpu->instr.nnnn == 1) clearFlags(cpu); // CLRF
 			break;
 		case MOV:
 			/*
@@ -204,20 +204,26 @@ void decode(cpu_t* cpu) {
 			break;
 		case STK:
 			/* 
-			* push [ reg | value ]
+			* push value
+			* push reg
 			* pop reg
 			*/
-			if (cpu->instr.nnnn == 0) {}
-			if (cpu->instr.nnnn == 1) {}
-			if (cpu->instr.nnnn == 2) {}
+			if (cpu->instr.nnnn == 0) push(cpu, cpu->instr.nn);
+			if (cpu->instr.nnnn == 1) push(cpu, cpu->regs[GET_NNN_BITS(cpu->instr.nnn)]);
+			if (cpu->instr.nnnn == 2) cpu->regs[GET_NNN_BITS(cpu->instr.nnn)] = pop(cpu);
 			break;
 		case SCALL:
 			/* 
 			*  scall 0 - print
+			*  scall 1 - scanf
 			*/
 			if (cpu->regs[R7] == 0) {
 				cpu->is_printing = true;
-				printf("%c", cpu->regs[R0]);
+				if (cpu->instr.nnnn == 0) printf("%c", cpu->regs[R0]);
+				if (cpu->instr.nnnn == 1) printf("%i", cpu->regs[R0]);
+			}
+			if (cpu->regs[R7] == 1) {
+				
 			}
 			break;
 	}
@@ -248,8 +254,8 @@ void printFlags(cpu_t* cpu) {
 // Print stack
 void printStack(cpu_t* cpu) {
 	printf("STACK: ");
-	for (size_t i = 0; i < cpu->stack.stack_data->size; ++i)
-		printf("%03i ", cpu->stack.stack_data->data[i]);
+	for (size_t i = 0; i < STACK_DEPTH; ++i)
+		printf("%03i ", cpu->stack[i]);
 	printf("\n");
 }
 
@@ -268,4 +274,22 @@ void updateFlags(cpu_t* cpu) {
 	cpu->flag.o = ((UINT8_MAX - reg) == 255);
 	cpu->flag.e = false;
 	cpu->flag.l = false;
+}
+
+void push(cpu_t* cpu, uint8_t value) {
+	if (cpu->p_st++ > STACK_DEPTH) {
+		printf("Out of stack range!\n");
+		exit(1);
+	}
+	cpu->stack[cpu->p_st] = value;
+}
+
+uint8_t pop(cpu_t* cpu) {
+	uint8_t value = cpu->stack[cpu->p_st];
+	cpu->stack[cpu->p_st] = 0;
+	if (cpu->p_st-- < 0) {
+		printf("Out of stack range!\n");
+		exit(1);
+	}
+	return value;
 }
