@@ -6,7 +6,6 @@
 #define DISPLAY_SIZE DISPLAY_W*DISPLAY_H
 
 typedef struct {
-	bool is_running;
 	bool display[DISPLAY_W * DISPLAY_H];
 	SDL_Window* wnd;
 	SDL_Renderer* renderer;

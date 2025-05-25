@@ -15,7 +15,6 @@ bool initDisplay(display_t* display) {
         return false;
     }
     memset(display->display, false, DISPLAY_SIZE);
-    display->is_running = true;
     return true;
 }
 
