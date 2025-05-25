@@ -61,7 +61,7 @@ void clearFlags(cpu_t* cpu) {
 void fetch(cpu_t* cpu) {
 	cpu->instr.op_code = cpu->memory[cpu->pc++];
 	cpu->instr.nnnn = (cpu->instr.op_code >> 12) & 0x0F;
-	cpu->instr.nnn = cpu->instr.op_code;// &(0xFFF >> 2);
+	cpu->instr.nnn = cpu->instr.op_code;
 	cpu->instr.nn = cpu->instr.op_code;
 	cpu->instr.n = cpu->instr.op_code & (0xF >> 1);
 }
