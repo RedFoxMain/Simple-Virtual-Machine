@@ -1,8 +1,8 @@
 # Simple Virtual Machine
 ## Table of Contents
 0. [Some info](#si)
-    0.1. [Structure of the command](#sotc)
-    0.2. [Debug flags](#df)
+    - 0.1. [Structure of the command](#sotc)
+    - 0.2. [Debug flags](#df)
 1. [0x](#Zero)
     1.1. [halt](#halt)
     1.2. [clrf](#clrf)
