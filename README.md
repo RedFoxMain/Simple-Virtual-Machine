@@ -40,34 +40,34 @@
 
 ## Debug flags <a name="df"></a>
 
-# 0x <a name="Zero"></a>
+### 0x <a name="Zero"></a>
 
-# Mov <a name="mov"></a>
+### Mov <a name="mov"></a>
 
-# Add <a name="add"></a>
+### Add <a name="add"></a>
 
-# Sub <a name="sub"></a>
+### Sub <a name="sub"></a>
 
-# Mul <a name="mul"></a>
+### Mul <a name="mul"></a>
 
-# Div <a name="div"></a>
+### Div <a name="div"></a>
 
-# Inc <a name="inc"></a>
+### Inc <a name="inc"></a>
 
-# Dec <a name="dec"></a>
+### Dec <a name="dec"></a>
 
-# And <a name="and"></a>
+### And <a name="and"></a>
 
-# Or <a name="or"></a>
+### Or <a name="or"></a>
 
-# Xor <a name="xor"></a>
+### Xor <a name="xor"></a>
 
-# Shift <a name="shift"></a>
+### Shift <a name="shift"></a>
 
-# Jump variants <a name="jumpInstr"></a>
+### Jump variants <a name="jumpInstr"></a>
 
-# Stack functions <a name="dec"></a>
+### Stack functions <a name="dec"></a>
 
-# Cmp <a name="cmp"></a>
+### Cmp <a name="cmp"></a>
 
-# SCALL <a name="scall"></a>
+### SCALL <a name="scall"></a>
