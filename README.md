@@ -41,6 +41,7 @@
 
 ### Debug flags <a name="df"></a>
 
+## Commands <a name="cmds"></a>
 ### 0x <a name="Zero"></a>
 
 ### Mov <a name="mov"></a>
