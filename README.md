@@ -37,8 +37,6 @@
 ## Some info <a name="si"></a>
 ### Structure of the command <a name="sotc"></a>
 
-### Structure of the command <a name="sotc"></a>
-
 ### Debug flags <a name="df"></a>
 
 ## Commands <a name="cmds"></a>
