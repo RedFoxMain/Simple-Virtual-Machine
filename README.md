@@ -33,12 +33,12 @@
 15. [cmp](#cmp)
 17. [scall](#scall)
 
-# Some info <a name="si"></a>
-## Structure of the command <a name="sotc"></a>
+## Some info <a name="si"></a>
+### Structure of the command <a name="sotc"></a>
 
-## Structure of the command <a name="sotc"></a>
+### Structure of the command <a name="sotc"></a>
 
-## Debug flags <a name="df"></a>
+### Debug flags <a name="df"></a>
 
 ### 0x <a name="Zero"></a>
 
