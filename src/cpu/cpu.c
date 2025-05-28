@@ -217,12 +217,12 @@ void decode(cpu_t* cpu) {
 			*  scall 0 - print
 			*  scall 1 - scanf
 			*/
-			if (cpu->regs[R7] == 0) {
+			if (cpu->regs[R5] == 0) {
 				cpu->is_printing = true;
 				if (cpu->instr.nnnn == 0) printf("%c", cpu->regs[R0]);
 				if (cpu->instr.nnnn == 1) printf("%i", cpu->regs[R0]);
 			}
-			if (cpu->regs[R7] == 1) {
+			if (cpu->regs[R5] == 1) {
 				
 			}
 			break;

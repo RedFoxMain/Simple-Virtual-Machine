@@ -7,7 +7,6 @@
 #include <stdbool.h>
 
 #include "../vector/vector.h"
-#include "../display/display.h"
 
 #define PRINT_MEM   0b0001
 #define PRINT_REGS  0b1000
@@ -16,10 +15,10 @@
 
 #define PROGRAM_ADDRESS 0x200
 #define MEM_SIZE 4 * 1024
-#define REG_COUNT 8
+#define REG_COUNT 6
 #define STACK_DEPTH 32
 
-#define GET_NNN_BITS(value) (value >> 8)
+#define GET_NNN_BITS(value) ((value >> 8) & 0x00F)
 #define GET_NN_BITS(value) (value >> 4)
 
 typedef enum {
@@ -34,13 +33,11 @@ typedef enum {
 * R1 - Register for math
 * R2 - Register for math
 * R3 - Register for math
-* R4 - X
-* R5 - Y
-* R6 - Counter
-* R7 - SYSCALL operation
+* R4 - Counter
+* R5 - SYSCALL operation
 */
 typedef enum {
-	R0, R1, R2, R3, R4, R5, R6, R7
+	R0, R1, R2, R3, R4, R5
 };
 
 // VM flags
@@ -73,8 +70,6 @@ typedef struct {
 	flags_t flag;
 	instruction_t instr;
 	size_t program_size;
-
-	display_t display;
 } cpu_t;
 
 // Main methods
