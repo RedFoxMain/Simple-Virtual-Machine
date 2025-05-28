@@ -11,26 +11,17 @@ endif()
 
 project ("SimpleVirtualMachine")
 
+set(BUILD_TESTS False)
+
 set( SRC_FILES
-	"src/main.c"
-	"src/cpu/cpu.h"
-	"src/cpu/cpu.c"
-	#"src/display/display.h"
-	#"src/display/display.c"
-
-	"src/vector/vector.h"
-	"src/vector/vector.c"
+		"src/cpu/cpu.h"
+		"src/cpu/cpu.c"
+		"src/vector/vector.h"
+		"src/vector/vector.c"
 )
 
-set(SDL_DIR "${CMAKE_SOURCE_DIR}/external/SDL/cmake")
-include_directories("${CMAKE_SOURCE_DIR}/external/SDL/include")
-
-add_executable(${PROJECT_NAME} ${SRC_FILES})
-
-# Automatically adds SDL3.dll to exe folder
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD        
-	COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CMAKE_SOURCE_DIR}/external/SDL/lib/x64/SDL3.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>
-)
-
-# Link SDL
-target_link_libraries(${PROJECT_NAME} "${CMAKE_SOURCE_DIR}/external/SDL/lib/x64/SDL3.lib")
+if(NOT BUILD_TESTS)
+	add_executable(${PROJECT_NAME} ${SRC_FILES} "src/main.c")
+else()
+	add_executable("${PROJECT_NAME}Tests" ${SRC_FILES} "src/test/test.c")
+endif()
