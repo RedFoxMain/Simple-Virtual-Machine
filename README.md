@@ -60,9 +60,9 @@ You can reset flags using function clrf or use jmp instructions.
 
 ## Commands <a name="cmds"></a>
 ### 0x <a name="Zero"></a>
-#### Halt <a name="halt"></a>
+   - #### Halt <a name="halt"></a>
 
-#### Clrf <a name="clrf"></a>
+   - #### Clrf <a name="clrf"></a>
 
 ### Mov <a name="mov"></a>
 
