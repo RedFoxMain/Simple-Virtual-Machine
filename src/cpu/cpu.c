@@ -223,7 +223,7 @@ void decode(cpu_t* cpu) {
 				
 			}
 			if (cpu->regs[R5] == 1) {
-				
+				scanf("%c", &cpu->regs[R0]);
 			}
 			break;
 	}

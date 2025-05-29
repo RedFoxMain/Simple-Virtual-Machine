@@ -16,7 +16,7 @@
 #define PROGRAM_ADDRESS 0x200
 #define MEM_SIZE 4 * 1024
 #define REG_COUNT 6
-#define STACK_DEPTH 32
+#define STACK_DEPTH 28
 
 #define GET_NNN_BITS(value) ((value >> 8) & 0x00F)
 #define GET_NN_BITS(value) (value >> 4)
