@@ -36,13 +36,47 @@
 
 ## Some info <a name="si"></a>
 ### Structure of the command <a name="sotc"></a>
+The command is a type uint32_t. <br>
+00000: <br>
+1. First 4 bits - op code; <br>
+2. Second 4 bits(nnnn) - mode; <br>
+3. Third  4 bits(nnn) - register; <br>
+4. Fourth 4 bits(nn) - register or
+together with the Fifth 4 bits(n) represent the value(from 0 to 255); <br>
+The modes of each operation are represented in the table below. <br>
+```
+Example:
+1010A // mov r1, 10
+11010 // mov r0, r1
+```
 
 ### Debug flags <a name="df"></a>
+The VM has 4 flags. A Equal(e), a Overflow(o), a Zero(z) and a Logic(l). By default all flags except zero flag is false. <br>
+- Equal flag is true, if the result of cmp command is true.
+- Overflow flag is true, if the result of the operation is bigger than 255
+- Zero flag is true, if the result is 0
+- Logic flag is true if the result of operations (or | and | xor) is true.
+You can reset flags using function clrf or use jmp instructions.
 
 ## Commands <a name="cmds"></a>
 ### 0x <a name="Zero"></a>
-
+   - #### Halt <a name="halt"></a>
+     Halt - end of the program. <br>
+     Op code: 00000 or 0 <br>
+   - #### Clrf <a name="clrf"></a>
+     Clrf - clear flags. <br>
+     Op code: 01000 <br>
 ### Mov <a name="mov"></a>
+Mov - set value to register. <br>
+Op code: 10000 <br>
+Has 2 mods(nnnn): <br>
+1. 0 - Set value(nn) to the reg1
+2. 1 - Set value of the reg2 to reg1
+```
+Example:
+101FF // mov r1, 255
+11010 // mov r0, r1
+```
 
 ### Add <a name="add"></a>
 
