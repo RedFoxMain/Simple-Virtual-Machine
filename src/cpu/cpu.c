@@ -135,7 +135,7 @@ void decode(cpu_t* cpu) {
 			* and reg1, reg2
 			*/
 			if (cpu->instr.nnnn == 0) cpu->flag.l = cpu->regs[GET_NNN_BITS(cpu->instr.nnn)] && cpu->instr.nn;
-			if (cpu->instr.nnnn == 1) cpu->flag.l = cpu->regs[GET_NN_BITS(cpu->instr.nn)] && cpu->regs[cpu->instr.n];
+			if (cpu->instr.nnnn == 1) cpu->flag.l = cpu->regs[GET_NNN_BITS(cpu->instr.nnn)] && cpu->regs[GET_NN_BITS(cpu->instr.nn)];
 			break;
 		case OR:
 			/*
@@ -143,7 +143,7 @@ void decode(cpu_t* cpu) {
 			* or reg1, reg2
 			*/
 			if (cpu->instr.nnnn == 0) cpu->flag.l = cpu->regs[GET_NNN_BITS(cpu->instr.nnn)] || cpu->instr.nn;
-			if (cpu->instr.nnnn == 1) cpu->flag.l = cpu->regs[GET_NN_BITS(cpu->instr.nn)] || cpu->regs[cpu->instr.n];
+			if (cpu->instr.nnnn == 1) cpu->flag.l = cpu->regs[GET_NNN_BITS(cpu->instr.nnn)] || cpu->regs[GET_NN_BITS(cpu->instr.nn)];
 			break;
 		case XOR:
 			/*
@@ -151,7 +151,7 @@ void decode(cpu_t* cpu) {
 			* xor reg1, reg2
 			*/
 			if (cpu->instr.nnnn == 0) cpu->flag.l = cpu->regs[GET_NNN_BITS(cpu->instr.nnn)] ^ cpu->instr.nn;
-			if (cpu->instr.nnnn == 1) cpu->flag.l = cpu->regs[GET_NN_BITS(cpu->instr.nn)] ^ cpu->regs[cpu->instr.n];
+			if (cpu->instr.nnnn == 1) cpu->flag.l = cpu->regs[GET_NNN_BITS(cpu->instr.nnn)] ^ cpu->regs[GET_NN_BITS(cpu->instr.nn)];;
 			break;
 		case JMP:
 			switch (cpu->instr.nnnn) {
@@ -219,8 +219,8 @@ void decode(cpu_t* cpu) {
 			*/
 			if (cpu->regs[R5] == 0) {
 				cpu->is_printing = true;
-				if (cpu->instr.nnnn == 0) printf("%c", cpu->regs[R0]);
-				if (cpu->instr.nnnn == 1) printf("%i", cpu->regs[R0]);
+				printf("%c", cpu->regs[R0]);
+				
 			}
 			if (cpu->regs[R5] == 1) {
 				
