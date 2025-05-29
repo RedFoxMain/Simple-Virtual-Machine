@@ -36,6 +36,19 @@
 
 ## Some info <a name="si"></a>
 ### Structure of the command <a name="sotc"></a>
+The command is a type uint32_t. <br>
+00000: <br>
+1. First 4 bits - op code; <br>
+2. Second 4 bits - mode; <br>
+3. Third  4 bits - register; <br>
+4. Fourth 4 bits - register or
+together with the Fifth 4 bits represent the value(from 0 to 255); <br>
+The modes of each operation are represented in the table below. <br>
+```
+Example: <br>
+1010A // mov r1, 10 <br>
+11010 // mov r0, r1 <br>
+```
 
 ### Debug flags <a name="df"></a>
 
