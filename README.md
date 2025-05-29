@@ -39,10 +39,10 @@
 The command is a type uint32_t. <br>
 00000: <br>
 1. First 4 bits - op code; <br>
-2. Second 4 bits - mode; <br>
-3. Third  4 bits - register; <br>
-4. Fourth 4 bits - register or
-together with the Fifth 4 bits represent the value(from 0 to 255); <br>
+2. Second 4 bits(nnnn) - mode; <br>
+3. Third  4 bits(nnn) - register; <br>
+4. Fourth 4 bits(nn) - register or
+together with the Fifth 4 bits(n) represent the value(from 0 to 255); <br>
 The modes of each operation are represented in the table below. <br>
 ```
 Example:
