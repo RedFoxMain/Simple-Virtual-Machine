@@ -156,7 +156,7 @@ Example:
 ### Stack functions <a name="stk"></a>
 
 ### Cmp <a name="cmp"></a>
-Cmp - Compares two registers or register and value. If they equal Logic flag sets to true <br>
+Cmp - Compares two registers or register and value. If they are equal Logic flag sets to true <br>
 Op code: E0000 <br>
 Has 2 mods(nnnn): <br>
 1. 0 - Cmp value(nn) to the reg1
