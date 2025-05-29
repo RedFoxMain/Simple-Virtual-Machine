@@ -61,9 +61,11 @@ You can reset flags using function clrf or use jmp instructions.
 ## Commands <a name="cmds"></a>
 ### 0x <a name="Zero"></a>
    - #### Halt <a name="halt"></a>
-
+Halt - end of the program. <br>
+Op code: 00000 or 0 <br>
    - #### Clrf <a name="clrf"></a>
-
+Clrf - clear flags. <br>
+Op code: 01000 <br>
 ### Mov <a name="mov"></a>
 
 ### Add <a name="add"></a>
