@@ -51,6 +51,12 @@ Example:
 ```
 
 ### Debug flags <a name="df"></a>
+The VM has 4 flags. A Equal(e), a Overflow(o), a Zero(z) and a Logic(l). By default all flags except zero flag is false. <br>
+- Equal flag is true, if the result of cmp command is true.
+- Overflow flag is true, if the result of operation is bigger than 255
+- Zero flag is true, if the result is 0
+- Logic flag is true if the result of operations (or | and | xor) is true.
+You can reset flags using function clrf or use jmp instructions.
 
 ## Commands <a name="cmds"></a>
 ### 0x <a name="Zero"></a>
