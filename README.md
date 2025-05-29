@@ -45,9 +45,9 @@ The command is a type uint32_t. <br>
 together with the Fifth 4 bits represent the value(from 0 to 255); <br>
 The modes of each operation are represented in the table below. <br>
 ```
-Example: <br>
-1010A // mov r1, 10 <br>
-11010 // mov r0, r1 <br>
+Example:
+1010A // mov r1, 10
+11010 // mov r0, r1
 ```
 
 ### Debug flags <a name="df"></a>
