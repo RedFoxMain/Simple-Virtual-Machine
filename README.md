@@ -66,6 +66,7 @@ You can reset flags using function clrf or use jmp instructions.
    - #### Clrf <a name="clrf"></a>
      Clrf - clear flags. <br>
      Op code: 01000 <br>
+
 ### Mov <a name="mov"></a>
 Mov - set value to register. <br>
 Op code: 10000 <br>
@@ -79,16 +80,68 @@ Example:
 ```
 
 ### Add <a name="add"></a>
+Add - Sums up two registers or register and value. <br>
+Op code: 20000 <br>
+Has 2 mods(nnnn): <br>
+1. 0 - Add value(nn) to the reg1
+2. 1 - Add reg2 to reg1
+```
+Example:
+2010A // add r1, 10
+21010 // add r0, r1
+```
 
 ### Sub <a name="sub"></a>
+Sub - Subtracts two registers or register and value. <br>
+Op code: 30000 <br>
+Has 2 mods(nnnn): <br>
+1. 0 - Sub value(nn) to the reg1
+2. 1 - Sub reg2 from reg1
+```
+Example:
+3010B // sub r1, 11
+31100 // sub r1, r0
+```
 
 ### Mul <a name="mul"></a>
+Mul - Multiplies two registers or register and value. <br>
+Op code: 40000 <br>
+Has 2 mods(nnnn): <br>
+1. 0 - Mul value(nn) to the reg1
+2. 1 - Mul reg2 from reg1
+```
+Example:
+4010B // mul r1, 11
+41100 // mul r1, r0
+```
 
 ### Div <a name="div"></a>
+Div - Divides two registers or register and value. <br>
+Op code: 50000 <br>
+Has 2 mods(nnnn): <br>
+1. 0 - Div value(nn) to the reg1
+2. 1 - Div reg2 from reg1
+```
+Example:
+5010B // div r1, 11
+51100 // div r1, r0
+```
 
 ### Inc <a name="inc"></a>
+Inc - increment register <br>
+Op code: 60000 <br>
+```
+Example:
+60100 // inc r1
+```
 
 ### Dec <a name="dec"></a>
+Dec - decrement register <br>
+Op code: 70000 <br>
+```
+Example:
+70100 // dec r1
+```
 
 ### And <a name="and"></a>
 
@@ -100,8 +153,18 @@ Example:
 
 ### Jump variants <a name="jumpInstr"></a>
 
-### Stack functions <a name="dec"></a>
+### Stack functions <a name="stk"></a>
 
 ### Cmp <a name="cmp"></a>
+Cmp - Compares two registers or register and value. If they equal Logic flag sets to true <br>
+Op code: E0000 <br>
+Has 2 mods(nnnn): <br>
+1. 0 - Cmp value(nn) to the reg1
+2. 1 - Cmp reg2 from reg1
+```
+Example:
+E010B // cmp r1, 11
+E1100 // cmp r1, r0
+```
 
 ### SCALL <a name="scall"></a>
