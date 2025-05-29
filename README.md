@@ -67,6 +67,16 @@ You can reset flags using function clrf or use jmp instructions.
      Clrf - clear flags. <br>
      Op code: 01000 <br>
 ### Mov <a name="mov"></a>
+Mov - set value to register. <br>
+Op code: 10000 <br>
+Has 2 mods(nnnn): <br>
+1. 0 - Set value(nn) to the reg1
+2. 1 - Set value of the reg2 to reg1
+```
+Example:
+101FF // mov r1, 255
+11010 // mov r0, r1
+```
 
 ### Add <a name="add"></a>
 
