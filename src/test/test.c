@@ -4,9 +4,8 @@
 
 bool compare(uint8_t* arr1, uint8_t* arr2) {
 	for (int i = 0; i < REG_COUNT; ++i) {
-		if (arr1[i] != arr2[i]) {
+		if (arr1[i] != arr2[i])
 			return false;
-		}
 	}
 	return true;
 }
@@ -36,6 +35,11 @@ void testFlag(const char* test_name, bool flag, bool result) {
 
 void testValue(const char* test_name, cpu_t* cpu, uint8_t result) {
 	if (cpu->regs[R0] == result) { printf("%s op test passed!\n", test_name); return; }
+	printf("%s op test not passed!\n", test_name); exit(1);
+}
+
+void testStack(const char* test_name, cpu_t* cpu, size_t index, uint8_t result) {
+	if (cpu->stack[index] == result) { printf("%s op test passed!\n", test_name); return; }
 	printf("%s op test not passed!\n", test_name); exit(1);
 }
 
@@ -89,8 +93,14 @@ void testLogicCase() {
 void testOtherCase() {
 	printf("START TESTING OTHER OPS\n");
 
-	//testValue("Shift Left", runCpu("../../../src/test/programs/shift_left.txt"), 10);
-	//testValue("Shift Right", runCpu("../../../src/test/programs/shift_right.txt"), 1);
+	// Shift test
+	testValue("Shift Left", runCpu("../../../src/test/programs/shift_left.txt"), 10);
+	testValue("Shift Right", runCpu("../../../src/test/programs/shift_right.txt"), 2);
+
+	// Stack op test
+	testStack("Push", runCpu("../../../src/test/programs/push.txt"), 0, 10);
+	testStack("Push reg", runCpu("../../../src/test/programs/push_reg.txt"), 0, 10);
+	testValue("Pop", runCpu("../../../src/test/programs/pop.txt"), 10);
 
 	printf("END TESTING OTHER OPS\n");
 }
