@@ -61,7 +61,7 @@ void clearFlags(cpu_t* cpu) {
 void fetch(cpu_t* cpu) {
 	cpu->instr.op_code = cpu->memory[cpu->pc++];
 	cpu->instr.nnnn = (cpu->instr.op_code >> 12) & 0x0F;
-	cpu->instr.nnn = cpu->instr.op_code;
+	cpu->instr.nnn = cpu->instr.op_code & 0x0FFF;
 	cpu->instr.nn = cpu->instr.op_code;
 	cpu->instr.n = cpu->instr.op_code & (0xF >> 1);
 }
@@ -73,6 +73,7 @@ void decode(cpu_t* cpu) {
 		case HALT:
 			if(cpu->instr.nnnn == 0) cpu->is_running = false; // HALT
 			if(cpu->instr.nnnn == 1) clearFlags(cpu); // CLRF
+			if (cpu->instr.nnnn == 2) system("cls"); // Clear screen
 			break;
 		case MOV:
 			/*
